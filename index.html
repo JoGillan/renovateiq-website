@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RenovateIQ — The home renovation planner that keeps every project organised from start to finish. Plan tasks, track budgets, manage contractors and document your transformation.">
+    <meta name="keywords" content="home renovation planner, renovation app, budget tracker, kitchen renovation, bathroom renovation, DIY planner, renovation tracker">
+    <meta property="og:title" content="RenovateIQ — Home Renovation Planner">
+    <meta property="og:description" content="Plan, budget and track your home renovation. Available on the App Store.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://renovateiq.co.uk">
+    <title>RenovateIQ — Home Renovation Planner</title>
+    <link rel="canonical" href="https://renovateiq.co.uk">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --green-dark: #1B4332;
+            --green-mid: #2D6A4F;
+            --gold: #C8A84B;
+            --gold-light: #E9C46A;
+            --cream: #F5F0E8;
+            --cream-muted: #D9CDB8;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--green-dark); color: var(--cream); line-height: 1.6; }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(27,67,50,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(200,168,75,0.2); padding: 0 24px; }
+        .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo-icon { width: 36px; height: 36px; background: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .nav-logo-text { font-size: 18px; font-weight: 700; color: var(--cream); }
+        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--cream-muted); text-decoration: none; font-size: 15px; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--cream); }
+        .nav-cta { background: var(--gold) !important; color: var(--green-dark) !important; padding: 8px 20px !important; border-radius: 8px !important; font-weight: 600 !important; }
+        .hero { padding: 140px 24px 100px; text-align: center; max-width: 800px; margin: 0 auto; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(200,168,75,0.15); border: 1px solid rgba(200,168,75,0.3); color: var(--gold); padding: 6px 16px; border-radius: 100px; font-size: 13px; font-weight: 600; margin-bottom: 28px; letter-spacing: 0.5px; }
+        .hero h1 { font-size: clamp(36px,6vw,64px); font-weight: 800; color: var(--cream); line-height: 1.1; margin-bottom: 24px; letter-spacing: -1px; }
+        .hero h1 span { color: var(--gold); }
+        .hero p { font-size: 20px; color: var(--cream-muted); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+        .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--green-dark); padding: 16px 32px; border-radius: 12px; font-size: 17px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+        .btn-primary:hover { background: var(--gold-light); }
+        .btn-secondary { display: inline-flex; align-items: center; gap: 10px; background: rgba(245,240,232,0.1); color: var(--cream); padding: 16px 32px; border-radius: 12px; font-size: 17px; font-weight: 600; text-decoration: none; border: 1px solid rgba(245,240,232,0.2); }
+        .hero-stats { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; }
+        .hero-stat-number { font-size: 28px; font-weight: 800; color: var(--gold); display: block; }
+        .hero-stat-label { font-size: 13px; color: var(--cream-muted); }
+        section { padding: 80px 24px; }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label { font-size: 12px; font-weight: 700; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+        .section-title { font-size: clamp(28px,4vw,42px); font-weight: 800; color: var(--cream); line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.5px; }
+        .section-subtitle { font-size: 18px; color: var(--cream-muted); max-width: 600px; margin-bottom: 56px; }
+        .features-bg { background: rgba(255,255,255,0.03); border-top: 1px solid rgba(200,168,75,0.1); border-bottom: 1px solid rgba(200,168,75,0.1); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 24px; }
+        .feature-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(200,168,75,0.15); border-radius: 16px; padding: 28px; transition: border-color 0.2s, transform 0.2s; }
+        .feature-card:hover { border-color: rgba(200,168,75,0.4); transform: translateY(-2px); }
+        .feature-icon { font-size: 32px; margin-bottom: 16px; }
+        .feature-title { font-size: 18px; font-weight: 700; color: var(--cream); margin-bottom: 8px; }
+        .feature-desc { font-size: 15px; color: var(--cream-muted); line-height: 1.6; }
+        .feature-pro { display: inline-block; background: rgba(200,168,75,0.15); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 3px 8px; border-radius: 6px; margin-top: 10px; text-transform: uppercase; }
+        .steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 32px; }
+        .step { text-align: center; padding: 24px; }
+        .step-number { width: 56px; height: 56px; background: var(--gold); color: var(--green-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; margin: 0 auto 16px; }
+        .step-title { font-size: 18px; font-weight: 700; color: var(--cream); margin-bottom: 8px; }
+        .step-desc { font-size: 15px; color: var(--cream-muted); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 24px; max-width: 700px; margin: 0 auto; }
+        .pricing-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(200,168,75,0.15); border-radius: 20px; padding: 36px; }
+        .pricing-card.featured { background: var(--gold); border-color: var(--gold); }
+        .pricing-card.featured .pricing-name, .pricing-card.featured .pricing-price, .pricing-card.featured .pricing-period, .pricing-card.featured .pricing-feature { color: var(--green-dark); }
+        .pricing-name { font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+        .pricing-price { font-size: 48px; font-weight: 800; color: var(--cream); line-height: 1; }
+        .pricing-period { font-size: 14px; color: var(--cream-muted); margin-bottom: 28px; margin-top: 4px; }
+        .pricing-features { list-style: none; margin-bottom: 28px; }
+        .pricing-feature { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--cream); padding: 6px 0; }
+        .pricing-feature-check { color: var(--gold); font-size: 16px; }
+        .pricing-btn { display: block; text-align: center; padding: 14px; border-radius: 10px; font-size: 16px; font-weight: 700; text-decoration: none; }
+        .pricing-btn-free { background: rgba(200,168,75,0.15); color: var(--gold); border: 1px solid rgba(200,168,75,0.3); }
+        .pricing-btn-pro { background: var(--green-dark); color: var(--gold); }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 24px; }
+        .blog-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(200,168,75,0.15); border-radius: 16px; padding: 28px; text-decoration: none; transition: border-color 0.2s, transform 0.2s; display: block; }
+        .blog-card:hover { border-color: rgba(200,168,75,0.4); transform: translateY(-2px); }
+        .blog-tag { display: inline-block; background: rgba(200,168,75,0.15); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; margin-bottom: 12px; }
+        .blog-title { font-size: 18px; font-weight: 700; color: var(--cream); margin-bottom: 8px; line-height: 1.3; }
+        .blog-excerpt { font-size: 14px; color: var(--cream-muted); line-height: 1.6; }
+        .blog-date { font-size: 12px; color: var(--cream-muted); margin-top: 16px; }
+        .cta-section { text-align: center; padding: 100px 24px; background: rgba(200,168,75,0.05); border-top: 1px solid rgba(200,168,75,0.1); }
+        .cta-section h2 { font-size: clamp(28px,4vw,48px); font-weight: 800; color: var(--cream); margin-bottom: 16px; }
+        .cta-section p { font-size: 18px; color: var(--cream-muted); margin-bottom: 40px; }
+        footer { background: rgba(0,0,0,0.3); border-top: 1px solid rgba(200,168,75,0.1); padding: 48px 24px; }
+        .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+        .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .footer-logo-icon { width: 32px; height: 32px; background: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .footer-logo-text { font-size: 16px; font-weight: 700; color: var(--cream); }
+        .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+        .footer-links a { color: var(--cream-muted); text-decoration: none; font-size: 14px; }
+        .footer-links a:hover { color: var(--cream); }
+        .footer-copy { color: var(--cream-muted); font-size: 13px; width: 100%; text-align: center; padding-top: 24px; border-top: 1px solid rgba(245,240,232,0.08); margin-top: 24px; }
+        @media (max-width: 640px) { .nav-links { display: none; } .hero { padding: 100px 24px 60px; } .hero-buttons { flex-direction: column; align-items: center; } }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="/" class="nav-logo">
+            <div class="nav-logo-icon">🏠</div>
+            <span class="nav-logo-text">RenovateIQ</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="https://apps.apple.com/gb/app/renovateiq/id6770462112" class="nav-cta">Download Free</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section>
+    <div class="hero">
+        <div class="hero-badge">🏠 Available on the App Store</div>
+        <h1>Your home renovation,<br><span>brilliantly organised</span></h1>
+        <p>Plan tasks, track budgets, manage contractors and document your transformation — all in one beautiful app.</p>
+        <div class="hero-buttons">
+            <a href="https://apps.apple.com/gb/app/renovateiq/id6770462112" class="btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                Download Free
+            </a>
+            <a href="#features" class="btn-secondary">See all features →</a>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-number">6+</span>
+                <span class="hero-stat-label">Currencies supported</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">8</span>
+                <span class="hero-stat-label">Room types</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">⭐⭐⭐⭐⭐</span>
+                <span class="hero-stat-label">App Store rating</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features-bg" id="features">
+    <div class="section-inner">
+        <div class="section-label">Features</div>
+        <h2 class="section-title">Everything you need to renovate smarter</h2>
+        <p class="section-subtitle">From first inspiration to finished transformation — RenovateIQ covers every step of your renovation journey.</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <div class="feature-title">Task Planning</div>
+                <div class="feature-desc">Break your renovation into phases — Preparation, Build and Finishing. Tick off tasks and watch your progress grow.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <div class="feature-title">Budget Tracking</div>
+                <div class="feature-desc">Set your budget, log every expense and compare your spend to market estimates. Multi-currency support included.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <div class="feature-title">Photo Gallery</div>
+                <div class="feature-desc">Save inspiration photos, document before and after shots. Your renovation story captured beautifully.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <div class="feature-title">Timeline View</div>
+                <div class="feature-desc">See your full renovation schedule at a glance. Set your start date and get an estimated completion date.</div>
+                <span class="feature-pro">Pro</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <div class="feature-title">Contractor Notes</div>
+                <div class="feature-desc">Keep all your tradespeople in one place — name, trade, phone, email and notes. Never lose a number again.</div>
+                <span class="feature-pro">Pro</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📄</div>
+                <div class="feature-title">PDF Export</div>
+                <div class="feature-desc">Export a full project report or simple summary to share with contractors, family or your architect.</div>
+                <span class="feature-pro">Pro</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <div class="feature-title">Share Progress</div>
+                <div class="feature-desc">Share your renovation journey as a beautiful image to Instagram, TikTok or WhatsApp.</div>
+                <span class="feature-pro">Pro</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔔</div>
+                <div class="feature-title">Smart Notifications</div>
+                <div class="feature-desc">Weekly progress summaries, expense reminders and milestone celebrations keep you on track.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <div class="feature-title">Home Screen Widget</div>
+                <div class="feature-desc">Keep your renovation progress on your home screen with small and medium widgets.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="how-it-works">
+    <div class="section-inner">
+        <div class="section-label">How it works</div>
+        <h2 class="section-title">Up and running in minutes</h2>
+        <p class="section-subtitle">No complicated setup. Just download, create your project and start planning.</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-title">Create your project</div>
+                <div class="step-desc">Choose your room type, name your project and set your budget. Takes less than a minute.</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-title">Plan your tasks</div>
+                <div class="step-desc">Use our pre-built checklists or create your own. Organised by phase so you know what comes next.</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-title">Track as you go</div>
+                <div class="step-desc">Log expenses, tick off tasks and add photos as your renovation progresses.</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-title">Share the result</div>
+                <div class="step-desc">Export a PDF for your contractor or share your transformation on social media.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features-bg" id="pricing">
+    <div class="section-inner">
+        <div class="section-label">Pricing</div>
+        <h2 class="section-title">Simple, honest pricing</h2>
+        <p class="section-subtitle">No subscription. No hidden fees. Pay once, own forever.</p>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-name">Free</div>
+                <div class="pricing-price">£0</div>
+                <div class="pricing-period">Forever free</div>
+                <ul class="pricing-features">
+                    <li class="pricing-feature"><span class="pricing-feature-check">✓</span> 1 project</li>
+                    <li class="pricing-feature"><span class="pricing-feature-check">✓</span> Task checklists</li>
+                    <li class="pricing-feature"><span class="pricing-feature-check">✓</span> Budget tracking</li>
+                    <li class="pricing-feature"><span class="pricing-feature-check">✓</span> Photo gallery</li>
+                    <li class="pricing-feature"><span class="pricing-feature-check">✓</span> Weekly notifications</li>
+                </ul>
+                <a href="https://apps.apple.com/gb/app/renovateiq/id6770462112" class="pricing-btn pricing-btn-free">Download Free</a>
+            </div>
+            <div class="pricing-card featured">
+                <div class="pricing-name">Pro</div>
+                <div class="pricing-price">£3.99</div>
+                <div class="pricing-period">One-time purchase</div>
+                <ul class="pricing-features">
+                    <li class="pricing-feature"><span class="pricing-feature-check">✓</span> Unlimited projects</li>
+                    <li class="pricing-feature"><span class="pricing-feature-check">✓</span> Everything in Free</li>
+                    <li class="pricing-feature"><span class="pricing-feature-check">✓</span> Contractor notes</li>
+                    <li class="pricing-feature"><span class="pricing-feature-check">✓</span> Timeline view</li>
+                    <li class="pricing-feature"><span class="pricing-feature-check">✓</span> PDF export</li>
+                    <li class="pricing-feature"><span class="pricing-feature-check">✓</span> Share progress</li>
+                    <li class="pricing-feature"><span class="pricing-feature-check">✓</span> Pro notifications</li>
+                </ul>
+                <a href="https://apps.apple.com/gb/app/renovateiq/id6770462112" class="pricing-btn pricing-btn-pro">Unlock Pro</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="blog">
+    <div class="section-inner">
+        <div class="section-label">Blog</div>
+        <h2 class="section-title">Renovation tips and guides</h2>
+        <p class="section-subtitle">Practical advice to help you plan, budget and manage your home renovation.</p>
+        <div class="blog-grid">
+            <a href="#" class="blog-card">
+                <span class="blog-tag">Kitchen</span>
+                <div class="blog-title">How to plan a kitchen renovation from start to finish</div>
+                <div class="blog-excerpt">Everything you need to know before starting a kitchen renovation — from setting a budget to finding the right tradespeople.</div>
+                <div class="blog-date">Coming soon</div>
+            </a>
+            <a href="#" class="blog-card">
+                <span class="blog-tag">Budget</span>
+                <div class="blog-title">The complete home renovation budget guide</div>
+                <div class="blog-excerpt">How to set a realistic renovation budget, track your spending and avoid the most common financial mistakes.</div>
+                <div class="blog-date">Coming soon</div>
+            </a>
+            <a href="#" class="blog-card">
+                <span class="blog-tag">Contractors</span>
+                <div class="blog-title">How to find and vet reliable tradespeople</div>
+                <div class="blog-excerpt">A practical guide to finding trustworthy contractors, getting quotes and managing tradespeople on your renovation.</div>
+                <div class="blog-date">Coming soon</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<div class="cta-section">
+    <h2>Ready to renovate smarter?</h2>
+    <p>Download RenovateIQ free today. No account needed.</p>
+    <a href="https://apps.apple.com/gb/app/renovateiq/id6770462112" class="btn-primary" style="display:inline-flex;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on the App Store
+    </a>
+</div>
+
+<footer>
+    <div class="footer-inner">
+        <a href="/" class="footer-logo">
+            <div class="footer-logo-icon">🏠</div>
+            <span class="footer-logo-text">RenovateIQ</span>
+        </a>
+        <ul class="footer-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="https://tasty-dash-858.notion.site/Privacy-Policy-RenovateIQ-3618bcb4c20e806496f5ee567caba1a8">Privacy Policy</a></li>
+            <li><a href="mailto:joannagillan@outlook.com">Support</a></li>
+        </ul>
+        <div class="footer-copy">© 2026 Joanna Gillan · RenovateIQ · Built with love for homeowners everywhere</div>
+    </div>
+</footer>
+
+</body>
+</html>
