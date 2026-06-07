@@ -175,7 +175,8 @@
         .footer-links a { color: var(--cream-muted); text-decoration: none; font-size: 14px; }
         .footer-links a:hover { color: var(--cream); }
         .footer-copy { color: var(--cream-muted); font-size: 13px; width: 100%; text-align: center; padding-top: 24px; border-top: 1px solid rgba(245,240,232,0.08); margin-top: 24px; }
-        @media (max-width: 640px) { .nav-links { display: none; } .hero { padding: 100px 24px 60px; } .hero-buttons { flex-direction: column; align-items: center; } .hero-text-block { text-align: center !important; } .hero-text-block h1, .hero-text-block p { text-align: center !important; } }
+        @media (max-width: 640px) { .nav-links { display: none; } .hero { padding: 100px 24px 60px; } .hero-buttons { flex-direction: column; align-items: center; } }
+        @media (max-width: 800px) { .hero-text-left { text-align: center !important; } .hero-text-left h1, .hero-text-left p { text-align: center !important; } }
     </style>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VYP5N57T6H"></script>
@@ -207,12 +208,12 @@
 
 <section>
     <div class="hero">
-        <div style="display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;margin-bottom:40px;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;margin-bottom:40px;text-align:center;">
             <div style="display:flex;flex-direction:column;align-items:center;gap:12px;flex-shrink:0;">
                 <img src="/images/renovateiq-logo.png" alt="RenovateIQ" style="width:140px;height:140px;border-radius:28px;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
                 <div class="hero-badge">🏠 Available on iPhone, iPad & Mac</div>
             </div>
-            <div class="hero-text-block" style="text-align:left;max-width:500px;">
+            <div style="text-align:left;max-width:480px;min-width:280px;">
                 <h1 style="text-align:left;">Your home renovation,<br><span>brilliantly organised</span></h1>
                 <p style="text-align:left;margin-left:0;margin-right:0;">Plan tasks, track budgets, manage contractors and document your transformation — all in one beautiful app.</p>
             </div>
